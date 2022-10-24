@@ -75,7 +75,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
 
             // td for yes cell with onclick actions
             const yes = document.createElement("td");
-              const yes = document.createElement('button');
+              const yes_but = document.createElement('button');
               yes_but.id = YES+row.id   // establishes a YEES JS id for cell
               yes_but.innerHTML = row.yes;  // add fetched "yes count" to innerHTML
               yes_but.onclick = function () {
