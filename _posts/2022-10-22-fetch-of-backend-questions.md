@@ -1,7 +1,7 @@
 ---
 title: Fetch of Backend Questions
 layout: default
-description: Our Frontend talking to Backend Python application serving jokes.  This api allows us to get customer responses. 
+description: Our Frontend talking to Backend Python application serving questions.  This api allows us to get customer responses. 
 permalink: /data/customer
 image: /images/feedback.jpeg
 categories: [C4.7]
@@ -31,7 +31,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
   const resultContainer = document.getElementById("result");
 
   // keys for joke reactions
-  const YES = "YES";
+  const YES = "yes";
   const NO = "no";
 
   // prepare fetch urls
