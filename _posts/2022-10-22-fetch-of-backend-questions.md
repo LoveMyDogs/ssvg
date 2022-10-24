@@ -35,9 +35,9 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
   const NO = "no";
 
   // prepare fetch urls
-  const url = "https://www.teamcheeseatimetime.tk/api/customer/";
-  const like_url = url + "like/";  // yes reaction
-  const no_url = url + "no/";  // no reaction
+  const url = "https://www.teamcheeseatimetime.tk/api/customer";
+  const like_url = url + "/like/";  // yes reaction
+  const no_url = url + "/no/";  // no reaction
 
   // prepare fetch GET options
   const options = {
