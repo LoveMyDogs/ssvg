@@ -118,6 +118,7 @@ window.onload = wrap_img;
     credentials: 'omit', // include, *same-origin, omit
     headers: {
       'Content-Type': 'application/json',
+      
     },
   };
   // prepare fetch PUT options, clones with JS Spread Operator (...)
@@ -142,29 +143,29 @@ window.onload = wrap_img;
             tr.id = rowIndex;
             // td for question cell
             const question = document.createElement("td");
-            question.innerHTML = row;  // add fetched data to innerHTML
+            question.innerHTML = row.question;  // add fetched data to innerHTML
 
             // td for yes cell with onclick actions
             const yes = document.createElement("td");
               const yes_but = document.createElement('button');
-              yes_but.id = YES + rowIndex;   // establishes a YEES JS id for cell
-              yes_but.innerHTML = 0;  // Initial count
+              yes_but.id = YES + row.id;   // establishes a YEES JS id for cell
+              yes_but.innerHTML = row.yes;  // Initial count
               yes_but.onclick = function () {
                 // onclick function call with "like parameters"
                 rowId = event.target.parentNode.parentNode.id;
-                reaction(YES, like_url + rowId, yes_but.id);  
+                reaction(YES, like_url + row.id, yes_but.id);  
               };
               yes.appendChild(yes_but);  // add "yes button" to yes cell
 
             // td for NO cell with onclick actions
             const no = document.createElement("td");
               const no_but = document.createElement('button');
-              no_but.id = NO + rowIndex // establishes a NO JS id for cell
-              no_but.innerHTML = 0;  // add fetched "no count" to innerHTML
+              no_but.id = NO + row.id// establishes a NO JS id for cell
+              no_but.innerHTML = row.no;  // add fetched "no count" to innerHTML
               no_but.onclick = function () {
                 // onclick function call with "worst parameters"
                 rowId = event.target.parentNode.parentNode.id;
-                reaction(NO, no_url + rowIndex, no_but.id);  
+                reaction(NO, no_url + row.id, no_but.id);  
               };
               no.appendChild(no_but);  // add "boohoo button" to boohoo cell
              
@@ -175,7 +176,7 @@ window.onload = wrap_img;
 
             // this adds all the tr (row) work above to the HTML "result" container
             resultContainer.appendChild(tr);
-            rowIndex++;
+        
           }
       })
   })
