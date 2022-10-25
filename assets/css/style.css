@@ -329,7 +329,7 @@ img.emoji { display: inline !important; vertical-align: baseline !important; }
 
 .page-content { -webkit-font-smoothing: antialiased !important; text-rendering: optimizeLegibility !important; font-family: "Segoe UI", SegoeUI, Roboto, "Segoe WP", "Helvetica Neue", "Helvetica", "Tahoma", "Arial", sans-serif !important; }
 
-.post-content p, .post-content li { font-size: 20px; color: #515151; }
+.post-content p, .post-content li { font-size: 18px; color: #400F90; }
 
 .post-link { font-weight: normal; }
 
@@ -373,11 +373,11 @@ h1:hover .anchor-link, h2:hover .anchor-link, h3:hover .anchor-link, h4:hover .a
 
 .post-meta-title, .post-meta { margin-top: .25em !important; margin-bottom: .25em !important; font-size: 105%; }
 
-.page-description { margin-top: .5rem !important; margin-bottom: .5rem !important; color: #585858; font-size: 115%; }
+.page-description { margin-top: .5rem !important; margin-bottom: .5rem !important; color: #5E3838; font-size: 115%; }
 
 .category-tags-icon { font-size: 75% !important; padding-left: 0.375em; opacity: 35%; }
 
-.category-tags-link { color: #bb8181 !important; font-size: 13px !important; }
+.category-tags-link { color: #bb81a0 !important; font-size: 13px !important; }
 
 .js-search-results { padding-top: 0.2rem; }
 
@@ -385,17 +385,17 @@ h1:hover .anchor-link, h2:hover .anchor-link, h3:hover .anchor-link, h4:hover .a
 
 .search-results-list-item .search-result-title { font-size: 16px; color: #d9230f; }
 
-.search-result-rel-url { color: silver; }
+.search-result-rel-url { color: #00FFD1; }
 
-.search-results-list-item a { display: block; color: #777; }
+.search-results-list-item a { display: block; color: #00B292; }
 
 .search-results-list-item a:hover, .search-results-list-item a:focus { text-decoration: none; }
 
 .search-results-list-item a:hover .search-result-title { text-decoration: underline; }
 
-.search-result-rel-date { color: #6d788a; font-size: 14px; }
+.search-result-rel-date { color: #6db48a; font-size: 14px; }
 
-.search-result-preview { color: #777; font-size: 16px; margin-top: .02rem !important; margin-bottom: .02rem !important; }
+.search-result-preview { color: #00B292; font-size: 16px; margin-top: .02rem !important; margin-bottom: .02rem !important; }
 
 .search-result-highlight { color: #2e0137; font-weight: bold; }
 
