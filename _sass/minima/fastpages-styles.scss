@@ -29,8 +29,8 @@ img.emoji{
 
 // make non-headings slightly lighter
 .post-content p, .post-content li {
-   font-size: 20px;
-   color: #515151;
+   font-size: 18px;
+   color: #400F90;
 }
 
 .post-link{
@@ -153,7 +153,7 @@ h6:hover .anchor-link {
 .page-description {
   margin-top: .5rem !important;
   margin-bottom: .5rem !important;
-  color: #585858;
+  color: #5E3838;
   font-size: 115%;
 }
 
@@ -164,7 +164,7 @@ h6:hover .anchor-link {
   opacity: 35%;
 }
 .category-tags-link {
-  color:rgb(187, 129, 129) !important;
+  color:rgb(187, 129, 160) !important;
   font-size: 13px !important;
 }
 
@@ -175,18 +175,18 @@ h6:hover .anchor-link {
   font-size: 16px;
   color: #d9230f;
 }
-.search-result-rel-url {color: silver;}
-.search-results-list-item a {display: block; color: #777;}
+.search-result-rel-url {color: #00FFD1;}
+.search-results-list-item a {display: block; color: #00B292;}
 .search-results-list-item a:hover, .search-results-list-item a:focus {text-decoration: none;}
 .search-results-list-item a:hover .search-result-title {text-decoration: underline;}
 
 .search-result-rel-date {
-  color: rgb(109, 120, 138);
+  color: rgb(109, 180, 138);
   font-size: 14px;
 }
 
 .search-result-preview {
-  color: #777;
+  color: #00B292;
   font-size: 16px;
   margin-top:.02rem !important;
   margin-bottom:.02rem !important;
