@@ -113,16 +113,11 @@ window.onload = wrap_img;
   // prepare fetch GET options
   const options = {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
-   // mode: 'cors', // no-cors, *cors, same-origin
+    mode: 'cors', // no-cors, *cors, same-origin
     cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
     credentials: 'omit', // include, *same-origin, omit
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin' : '*',
-      'Access-Control-Allow-Methods' : 'GET,PUT,POST',
-      'Access-Control-Allow-Headers': 'Content-Type,Authorization',
-      'Access-Control-Allow-Credentials':'true',
-      // 'Content-Type': 'application/x-www-form-urlencoded',
     },
   };
   // prepare fetch PUT options, clones with JS Spread Operator (...)
