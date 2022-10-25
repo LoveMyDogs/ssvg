@@ -104,18 +104,24 @@ window.onload = wrap_img;
   const NO = "no";
 
   // prepare fetch urls
-  const url = "https://www.teamcheeseatimetime.tk/api/customer";
+   const url = "https://www.teamcheeseatimetime.tk/api/customer";
+  // const url = "http://localhost:5000/api/customer";
+
   const like_url = url + "/like/";  // yes reaction
   const no_url = url + "/no/";  // no reaction
 
   // prepare fetch GET options
   const options = {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
+   // mode: 'cors', // no-cors, *cors, same-origin
     cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
     credentials: 'omit', // include, *same-origin, omit
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin' : '*',
+      'Access-Control-Allow-Methods' : 'GET,PUT,POST',
+      'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+      'Access-Control-Allow-Credentials':'true',
       // 'Content-Type': 'application/x-www-form-urlencoded',
     },
   };
