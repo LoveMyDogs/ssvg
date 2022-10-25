@@ -80,7 +80,9 @@
 
   
   
-      ,"page0": {
+
+  
+      ,"page1": {
           "title": "API",
           "content": "| Customer Service Survey | .",
           "url": "https://lovemydogs.github.io/teamcheesep3t8/api/overview",
@@ -93,7 +95,7 @@
   
 
   
-      ,"page2": {
+      ,"page3": {
           "title": "About Me",
           "content": "This website is powered by fastpages 1. . a blogging platform that natively supports Jupyter notebooks in addition to other formats. &#8617; . |",
           "url": "https://lovemydogs.github.io/teamcheesep3t8/about/",
@@ -125,7 +127,7 @@
   
 
   
-      ,"page11": {
+      ,"page12": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://lovemydogs.github.io/teamcheesep3t8/robots.txt",
