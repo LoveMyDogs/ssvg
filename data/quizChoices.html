@@ -256,19 +256,19 @@ window.onload = wrap_img;
 
     continueButton.onclick = function () { 
       const currentPageId = questionIdList[currentPageIndex];
-      if (currentPageIndex >= questionIdList.length ) {
-        // TODO: enable final page - udr href
+      
+      var cur = document.getElementById(currentPageId);
+      cur.style.display = 'none';
+
+      const nextIdx = currentPageIndex + 1;
+      if (nextIdx >= questionIdList.length ) {
+        // TODO: enable final page - redirect to endpage using href
         console.log('done with all questions');
         return;
       }
-      currentPageIndex++;
-      const nextPageId = questionIdList[currentPageIndex];
+      const nextPageId = questionIdList[nextIdx];
       console.log('next page ', nextPageId);
-
-      var cur = document.getElementById(currentPageId);
       var next = document.getElementById(nextPageId);
-     
-      cur.style.display = 'none';
       next.removeAttribute('hidden');
       next.style.display = 'block';
       
