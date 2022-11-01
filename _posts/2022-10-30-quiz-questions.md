@@ -158,7 +158,14 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
         radioDiv.appendChild(radioButton);
         radioDiv.appendChild(labelValue);
         choicesDiv.appendChild(radioDiv);
+        radio.setAttribute(name, question.id + "choices");
+
+        radio.addEventListener("click", function() {
+          if (this.checked) {
+            answer = this.id;
+            }
       }
+      };
       return choicesDiv;
   }
   function create_buttons(question) {
