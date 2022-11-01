@@ -2,10 +2,10 @@
   
     
         "post0": {
-            "title": "Fetch of Backend Questions",
+            "title": "Quiz Questions",
             "content": "",
-            "url": "https://lovemydogs.github.io/teamcheesep3t8/data/quiz",
-            "relUrl": "/data/quiz",
+            "url": "https://lovemydogs.github.io/teamcheesep3t8/data/quizChoices",
+            "relUrl": "/data/quizChoices",
             "date": " • Oct 30, 2022"
         }
         
@@ -68,10 +68,10 @@
   
     
         ,"post6": {
-            "title": "Fetch Of Backend Questions",
-            "content": ". title: Fetch of Backend Questions layout: default description: Our Frontend talking to Backend Python application serving questions. This api allows us to get customer responses. permalink: /data/customer image: /images/feedback.jpeg tags: [javascript, fetch, dom, getElementID, appendChild] — . | Customer Service Survey | . Question Yes No .",
-            "url": "https://lovemydogs.github.io/teamcheesep3t8/2022/10/22/fetch-of-backend-questions.html",
-            "relUrl": "/2022/10/22/fetch-of-backend-questions.html",
+            "title": "Customer Questions",
+            "content": "| Customer Service Survey | . Question Yes No .",
+            "url": "https://lovemydogs.github.io/teamcheesep3t8/data/customer",
+            "relUrl": "/data/customer",
             "date": " • Oct 22, 2022"
         }
         
