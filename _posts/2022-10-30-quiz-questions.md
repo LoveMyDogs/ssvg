@@ -195,7 +195,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       var cur = document.getElementById(currentPageId);
       cur.style.display = 'none';
 
-      const nextIdx = currentPageIndex + 1;
+      const nextIdx = ++currentPageIndex;
       if (nextIdx >= questionIdList.length ) {
         // TODO: enable final page - redirect to endpage using href
         console.log('done with all questions');
