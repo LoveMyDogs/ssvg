@@ -158,14 +158,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
         radioDiv.appendChild(radioButton);
         radioDiv.appendChild(labelValue);
         choicesDiv.appendChild(radioDiv);
-        radio.setAttribute(name, question.id + "choices");
-
-        radio.addEventListener("click", function() {
-          if (this.checked) {
-            answer = this.id;
-            }
       }
-      };
       return choicesDiv;
   }
   function create_buttons(question) {
@@ -180,7 +173,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       'color: blue; width: 150px; height: 40px; ',
     );
     checkButton.onclick = function () {
-      // TODO: Call checkanswer rest API ; if score = 0 (result from the API), display incorrect; else display correc
+      // TODO: Call checkanswer rest API ; if score = 0 (result from the API), display incorrect; else display correct
       // how to get question and answer from user to this function
       const questId = questionIdList[currentPageIndex];
       const answer = 'TODO: needtocheckradiobuttonvalue';
