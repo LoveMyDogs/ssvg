@@ -230,5 +230,4 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     tr.appendChild(td);
     resultContainer.appendChild(tr);
   }
-
 </script>
