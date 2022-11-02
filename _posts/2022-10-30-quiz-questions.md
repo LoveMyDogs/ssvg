@@ -2,7 +2,7 @@
 title: Quiz Questions
 layout: default
 description: Our Frontend talking to Backend Python application serving questions.  This api allows us to get customer responses. 
-permalink: /data/quizChoices
+permalink: /data/quiz
 image: /images/feedback.jpeg
 tags: [javascript, fetch, dom, getElementID, appendChild]
 ---
@@ -24,7 +24,8 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
   const resultContainer = document.getElementById("quiz_result");
 
   // prepare fetch urls
-  const url = "https://www.teamcheeseatimetime.tk/api/quiz";
+   const url = "https://www.teamcheeseatimetime.tk/api/quiz";
+  // onst url = "http://localhost:5000/api/quiz" ;
   
   const fetchQuizUrl = `/${subj}/${totalQs}`;
   // prepare fetch GET options
@@ -40,8 +41,10 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
   };
  
   currentPageIndex = 0;
-  questionIdList = []
-  
+  questionIdList = [];
+  choiceMap = {};
+  selectedAnswer = '';
+
   // fetch the API
   fetch(url + fetchQuizUrl, options)
     // response is a RESTful "promise" on any successful fetch
@@ -68,7 +71,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     // const event.target.parentElement.id;
     var requestData = {
       question: questId,
-      answer: answer
+      answer: selectedAnswer
     };
     const post_options = { 
       ...options, 
@@ -76,9 +79,9 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       body: JSON.stringify(requestData) 
     }; // clones and replaces method
 
-    post_url = 'checkanswer';
+    post_url = '/checkanswer';
     // fetch the API
-    fetch(post_url, post_options)
+    fetch(url + post_url, post_options)
     // response is a RESTful "promise" on any successful fetch
     .then(response => {
       // check for response errors
@@ -94,7 +97,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     })
     // catch fetch errors (ie Nginx ACCESS to server blocked)
     .catch(err => {
-      error(err + " " + put_url);
+      error(err + " " + post_url);
     });
     
   }
@@ -149,22 +152,31 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       // loop through choices to make MCs
       const choicesDiv = document.createElement("div");
       choicesDiv.id= question.id + "choices";
-      answer = '';
+      idx = 0;
       for (const questionChoice of question.choices) {
+        idx++;
         var radioDiv = document.createElement("div");
+        
         var radioButton = document.createElement("INPUT");
         radioButton.setAttribute("type", "radio");
-        radio.setAttribute(name, choicesDiv.id);
+        radioButton.setAttribute('name', question.id + "choices");
+        radioButton.id = question.id + '-radio-'+ idx;
+
         var labelValue = document.createElement('label');
+        labelValue.id = question.id + '-radiolabel-' + idx;
         labelValue.innerHTML = questionChoice;
-        radioDiv.appendChild(radioButton);  
+        choiceMap[radioButton.id] = questionChoice;
+        radioDiv.appendChild(radioButton);
         radioDiv.appendChild(labelValue);
         choicesDiv.appendChild(radioDiv);
-        radio.addEventListener("click", function() {
-          if (answer.checked) {
-            answer = solution.id;
+        
+        radioButton.addEventListener("click", function() {
+          if (this.checked) {
+            selectedAnswer = choiceMap[this.id];
           }  
         });
+        
+      };
       return choicesDiv;
   }
   function create_buttons(question) {
@@ -179,11 +191,10 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       'color: blue; width: 150px; height: 40px; ',
     );
     checkButton.onclick = function () {
-      // TODO: Call checkanswer rest API ; if score = 0 (result from the API), display incorrect; else display correct
+      // TODO: Call checkanswer rest API ; if score = 0 (result from the API), display incorrect; else display correc
       // how to get question and answer from user to this function
       const questId = questionIdList[currentPageIndex];
-      const answer = 'TODO: needtocheckradiobuttonvalue';
-      onCheckAnswer(questId, answer);
+      onCheckAnswer(questId, selectedAnswer);
     };
     questionCheckDiv.appendChild(checkButton);  // add "yes button" to yes cell
 
@@ -230,4 +241,5 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     tr.appendChild(td);
     resultContainer.appendChild(tr);
   }
+
 </script>
