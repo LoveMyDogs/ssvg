@@ -226,8 +226,8 @@ window.onload = wrap_img;
         radioDiv.appendChild(labelValue);
         choicesDiv.appendChild(radioDiv);
         radio.addEventListener("click", function() {
-          if (this.checked) {
-            answer = this.id;
+          if (answer.checked) {
+            answer = solution.id;
           }  
         });
       return choicesDiv;
