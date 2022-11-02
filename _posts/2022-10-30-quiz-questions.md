@@ -149,23 +149,22 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       // loop through choices to make MCs
       const choicesDiv = document.createElement("div");
       choicesDiv.id= question.id + "choices";
+      answer = '';
       for (const questionChoice of question.choices) {
         var radioDiv = document.createElement("div");
         var radioButton = document.createElement("INPUT");
         radioButton.setAttribute("type", "radio");
+        radio.setAttribute(name, choicesDiv.id);
         var labelValue = document.createElement('label');
         labelValue.innerHTML = questionChoice;
-        radioDiv.appendChild(radioButton);
+        radioDiv.appendChild(radioButton);  
         radioDiv.appendChild(labelValue);
         choicesDiv.appendChild(radioDiv);
-        radio.setAttribute(name, question.id + "choices");
-
         radio.addEventListener("click", function() {
           if (this.checked) {
             answer = this.id;
-            }
-      }
-      };
+          }  
+        });
       return choicesDiv;
   }
   function create_buttons(question) {
