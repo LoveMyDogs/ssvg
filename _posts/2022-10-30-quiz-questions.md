@@ -161,8 +161,8 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
         radioDiv.appendChild(labelValue);
         choicesDiv.appendChild(radioDiv);
         radio.addEventListener("click", function() {
-          if (this.checked) {
-            answer = this.id;
+          if (answer.checked) {
+            answer = solution.id;
           }  
         });
       return choicesDiv;
