@@ -6,14 +6,15 @@ permalink: /data/quiz
 image: /images/feedback.jpeg
 tags: [javascript, fetch, dom, getElementID, appendChild]
 ---
- 
+<!-- TODO: add this link to each quiz type href (see continueButton): quiz?subject=APStats&totalQs=5 !--> 
 <!-- HTML  fragment for page -->
  <div id="quiz_result">
-    <!-- javascript generated data -->
+    <!-- javascript generated data --> 
 </div>
  
 <!-- Script is layed out in a sequence (without a function) and will execute when page is loaded -->
 <script>
+
   const queryString = window.location.search;
   console.log(queryString);
   const urlParams = new URLSearchParams(queryString);
@@ -24,8 +25,8 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
   const resultContainer = document.getElementById("quiz_result");
 
   // prepare fetch urls
-   const url = "https://www.teamcheeseatimetime.tk/api/quiz";
-  // onst url = "http://localhost:5000/api/quiz" ;
+  const url = "https://www.teamcheeseatimetime.tk/api/quiz";
+  const urllocal = "http://localhost:5000/api/quiz" ;
   
   const fetchQuizUrl = `/${subj}/${totalQs}`;
   // prepare fetch GET options
@@ -44,6 +45,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
   questionIdList = [];
   choiceMap = {};
   selectedAnswer = '';
+  myAnswerResponse = {};
 
   // fetch the API
   fetch(url + fetchQuizUrl, options)
@@ -92,7 +94,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       // valid response will have JSON data
       response.json().then(data => {
           console.log(data);
-          // TODO: add checkanswer api call here
+          myAnswerResponse = data;
       })
     })
     // catch fetch errors (ie Nginx ACCESS to server blocked)
@@ -173,6 +175,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
         radioButton.addEventListener("click", function() {
           if (this.checked) {
             selectedAnswer = choiceMap[this.id];
+            document.getElementById(question.id + "continueButton").disabled = false;
           }  
         });
         
@@ -183,6 +186,13 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
 
     const questionCheckDiv = document.createElement("div");
     questionCheckDiv.id= question.id + "answer";
+    questionCheckDiv.setAttribute(
+      'style',
+      'margin-top:20px;',
+    );
+    var hl = document.createElement("hr");
+    hl.setAttribute("style", "color:red;margin-bottom:10px;margin-top:10px;");
+    questionCheckDiv.appendChild(hl);
     const checkButton = document.createElement('button');
     checkButton.id = question.id + "checkAnswer";
     checkButton.innerHTML = "Check Answer";
@@ -194,13 +204,14 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       // TODO: Call checkanswer rest API ; if score = 0 (result from the API), display incorrect; else display correc
       // how to get question and answer from user to this function
       const questId = questionIdList[currentPageIndex];
-      onCheckAnswer(questId, selectedAnswer);
+      onCheckAnswer(questId, selectedAnswer);     
     };
     questionCheckDiv.appendChild(checkButton);  // add "yes button" to yes cell
 
     const continueButton = document.createElement('button');
     continueButton.id = question.id + "continueButton";
     continueButton.innerHTML = "Continue";
+    continueButton.disabled = true;
     continueButton.setAttribute(
       'style',
       'color: blue; width: 150px; height: 40px;margin-left:10px;',
@@ -210,12 +221,11 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       const currentPageId = questionIdList[currentPageIndex];
       
       var cur = document.getElementById(currentPageId);
-      cur.style.display = 'none';
-
+      cur.style.display = 'none';     
       const nextIdx = ++currentPageIndex;
-      if (nextIdx >= questionIdList.length ) {
-        // TODO: enable final page - redirect to endpage using href
+      if (nextIdx >= questionIdList.length ) {        
         console.log('done with all questions');
+        location.href = "quizfinish";
         return;
       }
       const nextPageId = questionIdList[nextIdx];
@@ -223,7 +233,11 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       var next = document.getElementById(nextPageId);
       next.removeAttribute('hidden');
       next.style.display = 'block';
-      
+      // Check answer again if it's different when user 
+      // clicks check answer
+      if (myAnswerResponse['yourAnswer'] != selectedAnswer) {
+        onCheckAnswer(currentPageId, selectedAnswer);  
+      }
     };
     questionCheckDiv.appendChild(continueButton); 
     return (questionCheckDiv);
