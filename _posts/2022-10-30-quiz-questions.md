@@ -97,7 +97,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
           myAnswerResponse = data;
           var msg1 = document.getElementById(questId + 'sol-1');
           const score = data['scoreForThisAnswer']
-          if (score == 0) {
+          if (score > 0) {
             msg1.innerHTML = 'Correct!';
           }
           else {
@@ -284,7 +284,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
 
     var msg3 = document.createElement('div');
     msg3.id = question.id  + 'sol-3';
-    msg3.setAttribute('style', 'margin-top:5px;');
+    msg3.setAttribute('style', 'margin-top:10px;');
     sol.appendChild(msg3);
 
     sol.setAttribute('style', 'padding:10px; border: 1px solid #969696;');
