@@ -44,7 +44,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
   currentPageIndex = 0;
   questionIdList = [];
   choiceMap = {};
-  selectedAnswer = '';
+  selectedAnswer = null;
   myAnswerResponse = {};
 
   // fetch the API
@@ -58,7 +58,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       }
       // valid response will have JSON data
       response.json().then(data => {
-          console.log(data);
+           
           onQuizResult(data);
       })
   })
@@ -93,8 +93,23 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       }
       // valid response will have JSON data
       response.json().then(data => {
-          console.log(data);
+           
           myAnswerResponse = data;
+          var msg1 = document.getElementById(questId + 'sol-1');
+          const score = data['scoreForThisAnswer']
+          if (score == 0) {
+            msg1.innerHTML = 'Correct!';
+          }
+          else {
+            msg1.innerHTML = 'Incorrect!';
+          }
+
+          var msg2 = document.getElementById(questId + 'sol-2');
+          msg2.innerHTML =  `Your score is ${score}`;
+
+          var msg3 = document.getElementById(questId + 'sol-3');
+          msg3.innerHTML =  data['solution'];
+          
       })
     })
     // catch fetch errors (ie Nginx ACCESS to server blocked)
@@ -142,8 +157,10 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
      
       const choices = create_choices(question);
       const buttons = create_buttons(question);
+      const solution = create_solution(question);
       questionDiv.appendChild(choices);
       questionDiv.appendChild(buttons);
+      questionDiv.appendChild(solution);
       
       resultContainer.appendChild(questionDiv);
       
@@ -167,6 +184,8 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
         var labelValue = document.createElement('label');
         labelValue.id = question.id + '-radiolabel-' + idx;
         labelValue.innerHTML = questionChoice;
+        labelValue.setAttribute('style', 'margin-left:5px');
+
         choiceMap[radioButton.id] = questionChoice;
         radioDiv.appendChild(radioButton);
         radioDiv.appendChild(labelValue);
@@ -188,22 +207,24 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     questionCheckDiv.id= question.id + "answer";
     questionCheckDiv.setAttribute(
       'style',
-      'margin-top:20px;',
+      'margin-top:20px;margin-bottom:20px;',
     );
-    var hl = document.createElement("hr");
-    hl.setAttribute("style", "color:red;margin-bottom:10px;margin-top:10px;");
-    questionCheckDiv.appendChild(hl);
+   
     const checkButton = document.createElement('button');
     checkButton.id = question.id + "checkAnswer";
     checkButton.innerHTML = "Check Answer";
     checkButton.setAttribute(
       'style',
-      'color: blue; width: 150px; height: 40px; ',
+      'color: blue; width: 120px; height: 30px; ',
     );
     checkButton.onclick = function () {
       // TODO: Call checkanswer rest API ; if score = 0 (result from the API), display incorrect; else display correc
       // how to get question and answer from user to this function
       const questId = questionIdList[currentPageIndex];
+      if (selectedAnswer === null) {
+        alert('Please select one of the answers shown');
+        return;
+      } 
       onCheckAnswer(questId, selectedAnswer);     
     };
     questionCheckDiv.appendChild(checkButton);  // add "yes button" to yes cell
@@ -214,7 +235,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     continueButton.disabled = true;
     continueButton.setAttribute(
       'style',
-      'color: blue; width: 150px; height: 40px;margin-left:10px;',
+      'color: blue; width: 120px; height: 30px;margin-left:10px;',
     );
 
     continueButton.onclick = function () { 
@@ -238,12 +259,38 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       if (myAnswerResponse['yourAnswer'] != selectedAnswer) {
         onCheckAnswer(currentPageId, selectedAnswer);  
       }
+      selectedAnswer = null;
     };
     questionCheckDiv.appendChild(continueButton); 
     return (questionCheckDiv);
 
   }
 
+  function create_solution(question) {
+
+    var sol = document.createElement('div');
+    var title = document.createElement('span');
+    title.innerHTML = 'Answer and Solution';
+    title.setAttribute('style', 'font-weight:bold; font-size: 15px;');
+    sol.appendChild(title);
+   
+    var msg1 = document.createElement('div');
+    msg1.id = question.id + 'sol-1';
+    sol.appendChild(msg1);
+
+    var msg2 = document.createElement('div');
+    msg2.id = question.id  + 'sol-2';
+    sol.appendChild(msg2);
+
+    var msg3 = document.createElement('div');
+    msg3.id = question.id  + 'sol-3';
+    msg3.setAttribute('style', 'margin-top:5px;');
+    sol.appendChild(msg3);
+
+    sol.setAttribute('style', 'padding:10px; border: 1px solid #969696;');
+
+    return sol;
+  }
   // Something went wrong with actions or responses
   function error(err) {
     // log as Error in console
