@@ -2,7 +2,7 @@
 toc: true
 comments: false
 layout: post
-title: One Directional MOtion
+title: One Directional Motion
 description: An explanation on one directional motion in physics and how it works
 permalink: /onemotion
 categories: [physics, explanations]
