@@ -106,7 +106,7 @@ window.onload = wrap_img;
       // valid response will have JSON data
       response.json().then(data => {
         console.log(data);
-        resultContainer.innerHTML =  <body> + JSON.stringify(data, undefined, '\t') + </body>;
+        resultContainer.innerHTML =  '<body>' + JSON.stringify(data, undefined, '\t') + '</body>';
       })
   })
   // catch fetch errors (ie Nginx ACCESS to server blocked)
